@@ -5,20 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data Analyst Portfolio - [Name]</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
-    header { background: #222; color: #fff; padding: 40px 20px; text-align: center; }
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    :root {
+      --bg-light: #f9f9f9;
+      --bg-dark: #1a1a1a;
+      --text-light: #333;
+      --text-dark: #f9f9f9;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    #typing {
+      font-size: 1.2em;
+      font-weight: 500;
+      height: 1.4em;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
     h2 { color: #2c3e50; }
-    .project { background: #fff; padding: 20px; margin: 20px 0; border-left: 5px solid #007acc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .footer { text-align: center; padding: 20px; font-size: 0.9em; color: #888; }
+    .project {
+      background: #fff;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 5px solid #007acc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .project:hover {
+      transform: scale(1.02);
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #888;
+      animation: bounce 2s infinite ease-in-out;
+    }
     a { color: #007acc; text-decoration: none; }
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      background: #007acc;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Mode</button>
   <header>
     <h1>[Name]</h1>
     <p>Data Analyst | SQL | Power BI | Python</p>
-    <p>Turning data into decisions.</p>
+    <p id="typing"></p>
   </header>
 
   <section>
@@ -65,5 +128,24 @@
   <div class="footer">
     <p>© 2025 [Name]. All rights reserved.</p>
   </div>
+
+  <script>
+    // Typing effect
+    const text = "Turning data into decisions.";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 70);
+      }
+    }
+    typeWriter();
+
+    // Dark mode toggle
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
 </body>
 </html>
